@@ -44,6 +44,16 @@ int _printf(const char *format, ...)
 			}
 			n++;
 		}
+		else if (format[n] == '%')
+		{
+			_pucha('%');
+			count++;
+		}
+		else
+		{
+			_pucha(format[n]);
+			count++;
+		}
 	}
 	va_end(var);
 	return (count);
