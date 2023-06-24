@@ -8,8 +8,8 @@
 
 
 
-/*Characters and strings print_functions
- */
+/*Prototypes of the printf functions*/
+int _pucha(char t);
 int _printf(const char *format, ...);
 
-#endif 
+#endif
