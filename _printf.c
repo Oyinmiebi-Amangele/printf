@@ -34,7 +34,7 @@ int _printf(const char *format, ...)
 		else if (format[n + 1] == 's')
 		{
 			char *str = va_arg(var, char *);
-			int i = 0
+			int i = 0;
 
 			while (str[i] != '\0')
 			{
