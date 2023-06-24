@@ -21,26 +21,30 @@ int _printf(const char *format, ...)
 		if (format[n] != '%')
 		{
 			_pucha(format[n]);
+			count++;
 		}
 		else if (format[n + 1] == 'c')
 		{
 			int x = va_arg(var, int);
 
 			_pucha(x);
+			count++;
 			n++;
 		}
 		else if (format[n + 1] == 's')
 		{
 			char *str = va_arg(var, char *);
+			int i = 0
 
-			while (*str != '\0')
+			while (str[i] != '\0')
 			{
-				_pucha(*str);
-				str++;
+				_pucha(str[i]);
+				count++;
+				i++;
 			}
 			n++;
 		}
-		count += 1;
 	}
+	va_end(var);
 	return (count);
 }
