@@ -31,9 +31,13 @@ int _printf(const char *format, ...)
 		}
 		else if (format[n + 1] == 's')
 		{
-			int x = va_arg(var, int);
+			char *str = va_arg(var, char *);
 
-			_pucha(x);
+			while (*str != '\0')
+			{
+				_pucha(*str);
+				str++;
+			}
 			n++;
 		}
 		count += 1;
