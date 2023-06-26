@@ -10,6 +10,7 @@
 
 /*Prototypes of the printf functions*/
 int _pucha(char t);
+int _put(char *str);
 int _printf(const char *format, ...);
 
 #endif

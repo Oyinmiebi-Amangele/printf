@@ -1,10 +1,8 @@
 #include "main.h"
 
 /**
- * _printf - function that prints characters
- * to the standard output.
+ * _printf - function that prints characters and strings.
  * @format: input character.
- *
  * Return: value of the printout.
  */
 
@@ -21,39 +19,29 @@ int _printf(const char *format, ...)
 		if (format[n] != '%')
 		{
 			_pucha(format[n]);
-			count++;
 		}
 		else if (format[n + 1] == 'c')
 		{
-			int x = va_arg(var, int);
-
-			_pucha(x);
-			count++;
+			_pucha(va_arg(var, int);
 			n++;
 		}
 		else if (format[n + 1] == 's')
 		{
-			char *str = va_arg(var, char *);
-			int i = 0;
+			int r_val = _put(va_arg(var, char *));
 
-			while (str[i] != '\0')
-			{
-				_pucha(str[i]);
-				count++;
-				i++;
-			}
 			n++;
+			count += (r_val - 1);
 		}
-		else if (format[n] == '%')
+		else if (format[n + 1] == '%')
 		{
 			_pucha('%');
-			count++;
+			n++;
 		}
 		else
 		{
 			_pucha(format[n]);
-			count++;
 		}
+		count += 1;
 	}
 	va_end(var);
 	return (count);
