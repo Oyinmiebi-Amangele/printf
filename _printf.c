@@ -19,11 +19,13 @@ int _printf(const char *format, ...)
 		if (format[n] != '%')
 		{
 			_pucha(format[n]);
+			count++;
 		}
 		else if (format[n + 1] == 'c')
 		{
 			_pucha(va_arg(var, int));
 			n++;
+			count++;
 		}
 		else if (format[n + 1] == 's')
 		{
@@ -34,18 +36,20 @@ int _printf(const char *format, ...)
 			{
 				_pucha(str[i]);
 				i++;
+				count++;
 			}
 			n++;
 		}
 		else if (format[n] == '%')
 		{
 			_pucha('%);
+			count++;
 		}
 		else
 		{
 			_pucha(format[n]);
+			count++;
 		}
-		count++;
 	}
 	va_end(var);
 	return (count);
