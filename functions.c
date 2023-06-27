@@ -20,7 +20,7 @@ int _pucha(char t)
 
 int printc(va_list args)
 {
-	_pucha(va_arg(list, int));
+	_pucha(va_arg(args, int));
 	return (1);
 }
 
@@ -45,12 +45,12 @@ int print_str(va_list s)
 	}
 	else
 	{
-		for (n = 0; str[n] != '\0'; n++)
+		for (u = 0; str[u] != '\0'; u++)
 		{
-			_pucha(str[n]);
+			_pucha(str[u]);
 		}
 	}
-	return (k);
+	return (u);
 }
 
 /**

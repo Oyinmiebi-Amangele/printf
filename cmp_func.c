@@ -19,11 +19,11 @@ int (*cmp_func(const char b))(va_list)
 
 	int r;
 
-	for (r = 0; printf[r].p != '\0'; r++)
+	for (r = 0; printf[r].ptr != '\0'; r++)
 	{
-		if (printf[r].p == b)
+		if (printf[r].ptr == b)
 		{
-			return (printf[k].func);
+			return (printf[r].func);
 		}
 	}
 
