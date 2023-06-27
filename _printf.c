@@ -8,46 +8,42 @@
 
 int _printf(const char *format, ...)
 {
-	unsigned int n;
-	int count = 0;
-	va_list var;
+	va_list args;
+	unsigned int i = 0, count = 0;
 
-	if (format == NULL)
+	if (!format)
 		return (-1);
-	va_start(var, format);
 
-	for (n = 0; format[n] != '\0'; n++)
+	va_start(args, format);
+	for (i = 0; format[i] != '\0'; i++)
 	{
-		if (format[n] != '%')
+		if (format[i] == '%')
 		{
-			_pucha(format[n]);
-			count++;
-		}
-		else if (format[n + 1] == 'c')
-		{
-			_pucha(va_arg(var, int));
-			n++;
-			count++;
-		}
-		else if (format[n + 1] == 's')
-		{
-			char *str = va_arg(var, char *);
-			int i = 0;
-
-			while (str[i] != '\0')
+			if (format[i + 1] == '\0')
+				return (-1);
+			else if (format[i + 1] == '%')
 			{
-				_pucha(str[i]);
+				_pucha('%');
+				count++;
 				i++;
+			}
+			else if (cmp_func(format[i + 1]) != NULL)
+			{
+				count += (cmp_func(format[i + 1]))(args);
+				i++;
+			}
+			else
+			{
+				_pucha(format[i]);
 				count++;
 			}
-			n++;
 		}
-		else if (format[n] == '%')
+		else
 		{
-			_pucha('%');
+			_pucha(format[i]);
 			count++;
 		}
 	}
-	va_end(var);
+	va_end(args);
 	return (count);
 }
