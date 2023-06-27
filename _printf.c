@@ -12,6 +12,8 @@ int _printf(const char *format, ...)
 	int count = 0;
 	va_list var;
 
+	if (format == NULL)
+		return (-1);
 	va_start(var, format);
 
 	for (n = 0; format[n] != '\0'; n++)
