@@ -42,12 +42,7 @@ int _printf(const char *format, ...)
 		}
 		else if (format[n] == '%')
 		{
-			_pucha('%);
-			count++;
-		}
-		else
-		{
-			_pucha(format[n]);
+			_pucha('%');
 			count++;
 		}
 	}
