@@ -22,26 +22,30 @@ int _printf(const char *format, ...)
 		}
 		else if (format[n + 1] == 'c')
 		{
-			_pucha(va_arg(var, int);
+			_pucha(va_arg(var, int));
 			n++;
 		}
 		else if (format[n + 1] == 's')
 		{
-			int r_val = _put(va_arg(var, char *));
+			char *str = va_arg(var, char *);
+			int i = 0;
 
+			while (str[i] != '\0')
+			{
+				_pucha(str[i]);
+				i++;
+			}
 			n++;
-			count += (r_val - 1);
 		}
-		else if (format[n + 1] == '%')
+		else if (format[n] == '%')
 		{
-			_pucha('%');
-			n++;
+			_pucha('%);
 		}
 		else
 		{
 			_pucha(format[n]);
 		}
-		count += 1;
+		count++;
 	}
 	va_end(var);
 	return (count);
