@@ -205,7 +205,7 @@ int print_octal(va_list args)
  * @args: List of arguments.
  * Return: Number of characters printed.
  */
-int print_hexidecimal(va_list args)
+int print_hexadecimal(va_list args)
 {
 	unsigned int num = va_arg(args, unsigned int);
 	int count = 0;
