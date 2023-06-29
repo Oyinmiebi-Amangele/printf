@@ -14,6 +14,11 @@ int (*cmp_func(const char b))(va_list)
 		{'s', print_str},
 		{'d', print_n},
 		{'i', print_n},
+		{'b', print_binary},
+		{'u', print_unsigned},
+		{'o', print_octal},
+		{'x', print_hexadecimal},
+		{'X', print_hexadecimal_upper},
 		{'\0', NULL}
 	};
 

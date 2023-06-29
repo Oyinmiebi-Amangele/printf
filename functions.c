@@ -98,3 +98,134 @@ int print_n(va_list n)
 	}
 	return (count);
 }
+
+/**
+ * print_binary - Prints an unsigned number in binary format.
+ * @types: List of arguments.
+ * Return: Number of characters printed.
+ */
+int print_binary(va_list types)
+{
+	unsigned int n = va_arg(types, unsigned int);
+	unsigned int m = 2147483648; /* 2^31 */
+	unsigned int a[32];
+	int count = 0;
+	int sum = 0;
+
+	/* Convert decimal number to binary representation */
+	unsigned int i;
+	for (i = 0; i < 32; i++)
+	{
+		a[i] = n / m;
+		n %= m;
+		m /= 2;
+	}
+
+	/* Print the binary representation */
+	i = 0;
+	while (i < 32)
+	{
+		sum += a[i];
+		if (sum || i == 31)
+		{
+			char binary_digit = '0' + a[i];
+			_pucha(binary_digit);
+			count++;
+		}
+		i++;
+	}
+
+	return count;
+}
+
+/**
+ * print_number - Prints a number of given base.
+ * @num: The number to be printed.
+ * @base: The base of the number.
+ * @uppercase: Flag indicating whether to use uppercase letters for hexadecimal.
+ * Return: The number of characters printed.
+ */
+int print_number(unsigned int num, int base, int uppercase)
+{
+	char buffer[BUFF_SIZE];
+	int count = 0;
+	int index = 0;
+	int i;
+
+	if (num == 0)
+	{
+		_pucha('0');
+		return 1;
+	}
+
+	while (num != 0)
+	{
+		unsigned int remainder = num % base;
+		buffer[index++] = (remainder < 10) ? ('0' + remainder) : (uppercase ? 'A' + remainder - 10 : 'a' + remainder - 10);
+		num /= base;
+	}
+
+	for (i = index - 1; i >= 0; i--)
+		count += _pucha(buffer[i]);
+
+	return count;
+}
+
+/**
+ * print_assigned - Prints an unsigned number
+ * @args: List of arguments.
+ * Return: Number of characters printed.
+ */
+
+int print_unsigned(va_list args)
+{
+	unsigned int num = va_arg(args, unsigned int);
+		int count = 0;
+	count += print_number(num, 10, 0);
+
+	return count;
+}
+/**
+ * print_octal - Prints a number in octal format.
+ * @args: List of arguments.
+ * Return: Number of characters printed
+ */
+
+int print_octal(va_list args)
+{
+	unsigned int num = va_arg(args, unsigned int);
+	int count = 0;
+
+	count += print_number(num, 8,0);
+	
+	return count;
+}
+/**
+ * print_hexadecimal - Prints a number in lowercase hexadecimal format.
+ * @args: List of arguments.
+ * Return: Number of characters printed.
+ */
+int print_hexidecimal(va_list args)
+{
+	unsigned int num = va_arg(args, unsigned int);
+	int count = 0;
+
+	count += print_number(num, 16, 0);
+
+	return count;
+}
+
+/**
+ * print_hexadecimal_upper - Prints a number in uppercase hexadecimal format.
+ * @args: List of arguments.
+ * Return: Number of characters printed.
+ */
+int print_hexadecimal_upper(va_list args)
+{
+	unsigned int num = va_arg(args, unsigned int);
+	int count = 0;
+
+	count += print_number(num, 16,1);
+
+	return count;
+}
